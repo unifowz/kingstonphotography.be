@@ -593,3 +593,10 @@ body {background:var(--site-bg);}
 @media(max-width:740px) {
   :root {--gutter:20px;}
 }
+
+/* Mobiel menu in dezelfde stijl als de links in de topbalk op desktop, niet in de grote koppenletter. */
+@media(max-width:740px) {
+  .mobile-nav a {font:700 13px/1 var(--font-body);letter-spacing:1.6px;text-transform:uppercase;padding:18px 0;transition:color .2s;}
+  .mobile-nav a:last-child {border-bottom:0;}
+  .mobile-nav a:hover {color:var(--green);}
+}
