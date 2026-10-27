@@ -581,3 +581,15 @@ body {background:var(--site-bg);}
   .stats-list strong {font-size:clamp(56px, 17vw, 80px);}
   .stats-list li > span {font-size:10px;letter-spacing:1.4px;}
 }
+
+/* Eén gedeelde kolom voor alle secties: de grote koppen, de cijfers en de tekst beginnen en eindigen op
+   dezelfde lijn, ook op brede schermen. Achtergronden lopen wel door tot de rand. */
+:root {--wrap:1400px;--gutter:clamp(20px,6vw,94px);}
+.header, .hero-inner, .stats, .gallery-section, .about, .contact, .footer {
+  max-width:none;
+  margin-inline:0;
+  padding-inline:max(var(--gutter), calc((100% - var(--wrap)) / 2));
+}
+@media(max-width:740px) {
+  :root {--gutter:20px;}
+}
