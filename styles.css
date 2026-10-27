@@ -596,7 +596,8 @@ body {background:var(--site-bg);}
 
 /* Mobiel menu in dezelfde stijl als de links in de topbalk op desktop, niet in de grote koppenletter. */
 @media(max-width:740px) {
-  .mobile-nav a {font:700 13px/1 var(--font-body);letter-spacing:1.6px;text-transform:uppercase;padding:18px 0;transition:color .2s;}
-  .mobile-nav a:last-child {border-bottom:0;}
+  /* Eén rij: de drie links naast elkaar. */
+  .mobile-nav:not([hidden]) {flex-direction:row;justify-content:space-between;padding:0 var(--gutter);}
+  .mobile-nav a {font:700 13px/1 var(--font-body);letter-spacing:1.6px;text-transform:uppercase;padding:18px 0;border-bottom:0;transition:color .2s;}
   .mobile-nav a:hover {color:var(--green);}
 }
