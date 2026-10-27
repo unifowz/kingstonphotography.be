@@ -127,18 +127,18 @@ function playIntro() {
     at(focusStart, () => {
       intro.classList.remove('is-bursting');
       intro.classList.add('is-hunting');
-      scramble(note, 'Scherpstellen');
+      scramble(note, 'Focusing');
       expose(frames[frames.length - 1]);
     });
     at(focusStart + 620, () => {
       intro.classList.replace('is-hunting', 'is-locked');
-      scramble(note, 'Daar is het');
+      scramble(note, 'Got it');
     });
     at(focusStart + 900, () => {
       scene.classList.add('is-closed');
       at(80, () => {
         counter.textContent = String(++shot).padStart(4, '0');
-        scramble(note, 'Vastgelegd');
+        scramble(note, 'Captured');
         scene.classList.remove('is-closed');
         handOff();
         intro.classList.add('is-captured');
@@ -208,7 +208,7 @@ menuButton.addEventListener('click', () => {
   mobileMenu.hidden = !open;
   menuButton.classList.toggle('is-open', open);
   menuButton.setAttribute('aria-expanded', String(open));
-  menuButton.setAttribute('aria-label', open ? 'Sluit menu' : 'Open menu');
+  menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 });
 mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
 
@@ -276,14 +276,14 @@ function showPreview(cards) {
   const moreCard = cards[GRID_PREVIEW - 1];
   const remaining = cards.length - (GRID_PREVIEW - 1);
   moreCard.classList.add('is-more');
-  moreCard.setAttribute('aria-label', `Bekijk nog ${remaining} foto's`);
+  moreCard.setAttribute('aria-label', `View ${remaining} more photos`);
   const label = document.createElement('span');
   label.className = 'photo-more';
   label.setAttribute('aria-hidden', 'true');
   const dots = document.createElement('b');
   dots.textContent = '•••';
   const count = document.createElement('small');
-  count.textContent = `+${remaining} foto's`;
+  count.textContent = `+${remaining} photos`;
   label.append(dots, count);
   moreCard.append(label);
 }
@@ -298,7 +298,7 @@ function updateGalleryState() {
   const selected = filterBar.querySelector('.is-active:not([hidden])');
   setFilter(selected ? selected.dataset.filter : 'all');
   galleryStatus.hidden = allPhotos.length > 0;
-  galleryStatus.textContent = "Er zijn momenteel geen foto's beschikbaar.";
+  galleryStatus.textContent = 'No photos are available right now.';
   const hero = document.querySelector('.hero-image');
   if (allPhotos.length) {
     const heroCard = allPhotos.find(card => card.dataset.full === heroPhoto?.src) || allPhotos[0];
@@ -316,7 +316,7 @@ function updateGalleryState() {
 }
 
 // Gebruik tekstnodes: album- en bestandsnamen zijn tekst, nooit HTML.
-makeFilter('Alles', 'all', albums.reduce((sum, album) => sum + album.photos.length, 0));
+makeFilter('All', 'all', albums.reduce((sum, album) => sum + album.photos.length, 0));
 albums.forEach((album, albumIndex) => {
   const category = `album-${albumIndex}`;
   makeFilter(album.name, category, album.photos.length);
@@ -327,7 +327,7 @@ albums.forEach((album, albumIndex) => {
     card.dataset.category = category;
     card.dataset.full = photo.src;
     card.dataset.caption = album.name;
-    card.dataset.label = `Bekijk ${photo.name} — ${album.name}`;
+    card.dataset.label = `View ${photo.name} — ${album.name}`;
     card.setAttribute('aria-label', card.dataset.label);
     const img = document.createElement('img');
     img.alt = `${album.name} — ${photo.name}`;
@@ -405,7 +405,7 @@ function updateImageStatus() {
   const loaded = viewerImage.complete && viewerImage.naturalWidth > 0;
   viewerImage.style.visibility = loaded ? 'visible' : 'hidden';
   viewerStatus.hidden = loaded;
-  viewerStatus.textContent = viewerImage.complete ? 'Deze afbeelding kan niet worden geladen.' : 'Foto laden…';
+  viewerStatus.textContent = viewerImage.complete ? 'This image could not be loaded.' : 'Loading photo…';
 }
 viewerImage.addEventListener('load', updateImageStatus);
 viewerImage.addEventListener('error', updateImageStatus);
@@ -440,7 +440,7 @@ function openPhoto(card) {
     const thumb = document.createElement('button');
     thumb.type = 'button';
     thumb.className = 'viewer-thumb';
-    thumb.setAttribute('aria-label', `Bekijk foto ${index + 1}: ${photo.querySelector('img').alt}`);
+    thumb.setAttribute('aria-label', `View photo ${index + 1}: ${photo.querySelector('img').alt}`);
     const image = document.createElement('img');
     image.src = photo.querySelector('img').src;
     image.alt = '';
